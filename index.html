@@ -16,11 +16,6 @@
 
  <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
 
-
-<script src="https://raw.github.com/gist/2197042/2b90c41b39b7d5b3a851d8f256de2ebd3fe1fb74/leaflet-google.js">
-</script>
-<script src="http://maps.google.com/maps/api/js?sensor=false&amp;v=3.2"></script>
-
 <script type="text/javascript" src="js/edificios.js"></script>
 <script type="text/javascript" src="js/jardines.js"></script>
 <script type="text/javascript" src="js/arboles.js"></script>
@@ -46,13 +41,12 @@ var basemap = new L.TileLayer(cloudmadeUrl, {maxZoom: 18});
 /* "toner" or "watercolor" */
 /* var basemap2 = new L.StamenTileLayer("toner"); */
 var basemap2 = new L.TileLayer.WMS("http://www.idee.es/wms/PNOA/PNOA", {
-layers: 'pnoa',
+layers: 'PNOA',
 format: 'image/png',
 style:'default',
 transparent: true
 });
 
-var basemap3 = new L.Google('ROADMAP');
 
 var latlng = new L.LatLng(43.333, -8.412);
 
@@ -64,8 +58,7 @@ boxZoom: true
 
 var baseLayers = {
     "CloudMade": basemap,
-    "PNOA": basemap2,
-"Google Terrain":basemap3
+    "PNOA": basemap2
 };
 
 var overlays = {
