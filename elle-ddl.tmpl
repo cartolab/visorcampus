@@ -1,0 +1,53 @@
+CREATE SCHEMA elle;
+ALTER SCHEMA elle OWNER TO ${owner};
+
+
+
+CREATE TABLE elle._map (
+    mapa character varying(255) NOT NULL,
+    nombre_capa character varying(255) NOT NULL,
+    nombre_tabla character varying(255),
+    posicion integer DEFAULT 0 NOT NULL,
+    visible boolean,
+    max_escala character varying(50),
+    min_escala character varying(50),
+    grupo character varying,
+    schema character varying,
+    localizador boolean,
+    PRIMARY KEY (mapa, nombre_capa)
+);
+ALTER TABLE elle._map OWNER TO ${owner};
+
+
+
+CREATE TABLE elle._map_overview (
+    mapa character varying NOT NULL,
+    nombre_capa character varying NOT NULL,
+    schema character varying,
+    posicion integer,
+    nombre_tabla character varying,
+    PRIMARY KEY (mapa, nombre_capa)
+);
+ALTER TABLE elle._map_overview OWNER TO ${owner};
+
+
+
+CREATE TABLE elle._map_overview_style (
+    nombre_capa character varying NOT NULL,
+    nombre_estilo character varying NOT NULL,
+    tipo character varying(3),
+    definicion xml,
+    PRIMARY KEY(nombre_capa, nombre_estilo)
+);
+ALTER TABLE elle._map_overview_style OWNER TO ${owner};
+
+
+
+CREATE TABLE elle._map_style (
+    nombre_capa character varying NOT NULL,
+    nombre_estilo character varying NOT NULL,
+    type character varying(3),
+    definicion xml,
+    PRIMARY KEY (nombre_capa, nombre_estilo)
+);
+ALTER TABLE elle._map_style OWNER TO ${owner};
