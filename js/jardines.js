@@ -252,7 +252,7 @@ jardines=
     fillColor: "#00CC00",
     weight:1,
 	opacity:1,
-	fillOpacity:0.55
+	fillOpacity:0.7
 
 };
 var jardinesLayer = new L.GeoJSON(jardines, {style:jardinesStyle});

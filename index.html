@@ -6,9 +6,6 @@
 
   <title>Geovisor Campus Elviña</title>
 
-<!--
-  <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.1"></script>
--->
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
  <!--[if lte IE 8]>
      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
@@ -16,49 +13,38 @@
 
  <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
 
-<script type="text/javascript" src="js/edificios.js"></script>
-<script type="text/javascript" src="js/jardines.js"></script>
-<script type="text/javascript" src="js/arboles.js"></script>
-<script type="text/javascript" src="js/campus_aceras.js"></script>
-<script type="text/javascript" src="js/carretera.js"></script>
-<script type="text/javascript" src="js/parking.js"></script>
+ <script type="text/javascript" src="js/edificios.js"></script>
+ <script type="text/javascript" src="js/jardines.js"></script>
+ <script type="text/javascript" src="js/arboles.js"></script>
+ <script type="text/javascript" src="js/campus_aceras.js"></script>
+ <script type="text/javascript" src="js/carretera.js"></script>
+ <script type="text/javascript" src="js/parking.js"></script>
 
-<!--
-<script type="text/javascript" src="js/Carril_Bici_01.js"></script>
-<script type="text/javascript" src="js/PuntosLuz_01.js"></script> 
-<script type="text/javascript" src="js/arbolado3.js"></script>
-<script type="text/javascript" src="js/Parada_Bus.js"></script>
-<script type="text/javascript" src="js/Marquesina_01.js"></script>
-<script type="text/javascript" src="js/Senda_03_POL.js"></script>
--->
 
  <script type="text/javascript">// <![CDATA[
 window.onload = function () {
 
-var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png';
-var basemap = new L.TileLayer(cloudmadeUrl, {maxZoom: 18});
-
-/* "toner" or "watercolor" */
-/* var basemap2 = new L.StamenTileLayer("toner"); */
-var basemap2 = new L.TileLayer.WMS("http://www.idee.es/wms/PNOA/PNOA", {
+var basemap = new L.TileLayer.WMS("http://www.idee.es/wms/PNOA/PNOA", {
 layers: 'PNOA',
 format: 'image/png',
 style:'default',
 transparent: true
 });
 
+var basemap2 = L.tileLayer.canvas();
 
 var latlng = new L.LatLng(43.333, -8.412);
 
 var mapOptions = { center: latlng,
 zoom: 15,
-layers: [basemap],
-boxZoom: true
+layers: [basemap, edificiosLayer, jardinesLayer, arbolesLayer, campus_acerasLayer, carreteraLayer, parkingLayer],
+boxZoom: true,
+crs: L.CRS.EPSG4326
 };
 
 var baseLayers = {
-    "CloudMade": basemap,
-    "PNOA": basemap2
+    "PNOA": basemap,
+    "Sin Fondo": basemap2
 };
 
 var overlays = {
@@ -70,14 +56,6 @@ var overlays = {
 "Parking":parkingLayer
 };
 
-/*
-"Senda_03_POL":Senda_03_POLLayer,
-"Carril_Bici_01":Carril_Bici_01Layer,
-"Parada_Bus":Parada_BusLayer,
-"Marquesina_01":Marquesina_01Layer,
-"PuntosLuz_01":PuntosLuz_01Layer,
-"arbolado3":arbolado3Layer,
-*/
 
 var controllerOptions = {
 collapsed: false,

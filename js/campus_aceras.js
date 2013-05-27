@@ -109,7 +109,7 @@ campus_aceras=
     fillColor: "#0000CC",
     weight:1,
 	opacity:1,
-	fillOpacity:0.55
+	fillOpacity:0.7
 
 };
 
