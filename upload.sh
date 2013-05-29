@@ -16,8 +16,11 @@ SRS="25829"
 SCHEMA="campus"
 TMP_SQL_FILE="/tmp/campus.sql"
 
-create-db
-
+# create-db
+$PSQL -h $server -p $port -U $superuser -c "`sql-drop-db`" #drop db could not be used in a function or multicommand
+$PSQL -h $server -p $port -U $superuser -c "`sql-drop-user` `sql-create-user`"
+$PSQL -h $server -p $port -U $superuser -c "`sql-create-db`" #create db could not be used in a function or multicommand
+$PSQL -h $server -p $port -U $superuser $dbname -c "`sql-public-grants`"
 
 echo "" > $TMP_SQL_FILE
 
@@ -44,7 +47,7 @@ done
 
 rename-fields fields_to_rename $TMP_SQL_FILE
 
-elle-ddl
+# elle-ddl
 # elle-dml
 cat elle.sql >> $TMP_SQL_FILE
 
