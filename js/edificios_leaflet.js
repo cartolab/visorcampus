@@ -7,8 +7,12 @@ edificiosStyle = {
 
 var edificiosLayer = new L.GeoJSON(edificios, {style:edificiosStyle,
 onEachFeature: function (feature, layer) {
-layer.bindPopup(feature.properties.Nombre);
+var html = new EJS({url: 'ejs/edificios.ejs'}).render(feature.properties);
+
+
+    layer.bindPopup(html)
 }
 
 
 });
+

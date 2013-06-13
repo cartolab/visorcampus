@@ -25,7 +25,8 @@ for path in `find $DATA_FOLDER -iname '*.shp'`; do
 #     \"color\":\"ff0000\",
 #     \"fillcolor\":\"ff0000\",
 #     \"weight\":5,
-#     \"opacity\":0.65
+#     \"opacity\":0.65,
+#    fillOpacity:0.7
 # };" >> js/${layer}.js
 
 #     echo "var ${layer}Layer = new L.GeoJSON(${layer}, {style:${layer}Style});" >> js/${layer}.js
