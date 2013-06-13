@@ -17,6 +17,7 @@ for path in `find $DATA_FOLDER -iname '*.shp'`; do
     echo "${layer}=" > js/${layer}_geojson.js
     ogr2ogr -s_srs EPSG:25829 -t_srs EPSG:4326 -f geojson /tmp/foo.js $path
     cat /tmp/foo.js >> js/${layer}_geojson.js
+    echo ";" >> js/${layer}_geojson.js
     rm /tmp/foo.js
     cat js/${layer}_geojson.js js/${layer}_leaflet.js > js/${layer}.js
 
